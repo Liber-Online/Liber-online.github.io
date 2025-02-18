@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Excel to HTML</title>
+  <style>
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr); /* Adjust based on your columns */
+      gap: 5px;
+    }
+    .grid-header > div {
+      font-weight: bold;
+      background-color: #f2f2f2;
+      padding: 10px;
+      text-align: center;
+    }
+    .grid-row > div {
+      padding: 10px;
+      border: 1px solid #ddd;
+    }
+  </style>
+</head>
+<body>
+  <input type="file" id="fileInput" accept=".xlsx, .xls" />
+  <div id="output"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <script>
+    document.getElementById('fileInput').addEventListener('change', function (e) {
+      const file = e.target.files[0];
+      const reader = new FileReader();
+
+      reader.onload = function (e) {
+        const data = new Uint8Array(e.target.result);
+        const workbook = XLSX.read(data, { type: 'array' });
+        const sheetName = workbook.SheetNames[0];
+        const sheet = workbook.Sheets[sheetName];
+        const json = XLSX.utils.sheet_to_json(sheet, { header: 1 });
+
+        generateHTML(json);
+      };
+
+      reader.readAsArrayBuffer(file);
+    });
+
+    function generateHTML(data) {
+      const output = document.getElementById('output');
+      let html = '<div class="grid-container">';
+
+      // Add header
+      html += '<div class="grid-header">';
+      data[0].forEach(header => {
+        html += `<div>${header}</div>`;
+      });
+      html += '</div>';
+
+      // Add rows
+      for (let i = 1; i < data.length; i++) {
+        html += '<div class="grid-row">';
+        data[i].forEach(cell => {
+          html += `<div>${cell}</div>`;
+        });
+        html += '</div>';
+      }
+
+      html += '</div>';
+      output.innerHTML = html;
+    }
+  </script>
+</body>
+</html>
