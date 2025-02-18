@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Editable Content</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .editor-container {
+            width: 80%;
+            margin: 0 auto;
+            border: 1px solid #ddd;
+            padding: 20px;
+            min-height: 200px;
+            background-color: #f9f9f9;
+        }
+        .editor-container[contenteditable="true"]:empty:before {
+            content: "Start editing...";
+            color: #888;
+        }
+        select {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Dropdown to select the file -->
+    <select id="fileSelect" onchange="loadFile()">
+        <option value="" disabled selected>Select an option</option>
+<option value="AngeredCentrum.html">Angered Centrum</option>
+<option value="AxelDahlstromsTorg.html">Axel Dahlströms Torg</option>
+<option value="Allhelgonakyrkan.html">Allhelgonakyrkan</option>
+<option value="Almedal.html">Almedal</option>
+<option value="Aprilgatan.html">Aprilgatan</option>
+<option value="Berzeliigatan.html">Berzeliigatan</option>
+<option value="Bevaringsgatan.html">Beväringsgatan</option>
+<option value="Brunnsgatan.html">Brunnsgatan</option>
+<option value="Bokekullsgatan.html">Bokekullsgatan</option>
+<option value="BotaniskaTradgarden.html">Botaniska Trädgården</option>
+<option value="Brunnsparken.html">Brunnsparken</option>
+<option value="Briljantgatan.html">Briljantgatan</option>
+<option value="Bellevue.html">Bellevue</option>
+<option value="Backeliden.html">Bäckeliden</option>
+<option value="Bogatan.html">Bögatan</option>
+<option value="Centralstationen.html">Centralstationen</option>
+<option value="Chalmers.html">Chalmers</option>
+<option value="Chalmerstunneln.html">Chalmerstunneln</option>
+<option value="ChapmansTorg.html">Chapmans Torg</option>
+<option value="DoktorFriesTorg.html">Doktor Fries Torg</option>
+<option value="DoktorSydowsGata.html">Doktor Sydows Gata</option>
+<option value="Domkyrkan.html">Domkyrkan</option>
+<option value="Ejdergatan.html">Ejdergatan</option>
+<option value="Ekedal.html">Ekedal</option>
+<option value="Ekmanska.html">Ekmanska</option>
+<option value="Elisedal.html">Elisedal</option>
+<option value="Eketragatan.html">Eketrägatan</option>
+<option value="FrolundaTorg.html">Frölunda Torg</option>
+<option value="Fjallgatan.html">Fjällgatan</option>
+<option value="Frihamnen.html">Frihamnen</option>
+<option value="Friskvaderstorget.html">Friskväderstorget</option>
+<option value="GalileisGata.html">Galileis Gata</option>
+<option value="GamlestadsTorg.html">Gamlestads Torg</option>
+<option value="Godhemsgatan.html">Godhemsgatan</option>
+<option value="Gropegardsgatan.html">Gropegårdsgatan</option>
+<option value="Gronsakstorget.html">Grönsakstorget</option>
+<option value="Harlanda.html">Härlanda</option>
+<option value="Hammarkullen.html">Hammarkullen</option>
+<option value="Hagen.html">Hagen</option>
+<option value="Hisingsbron.html">Hisingsbron</option>
+<option value="Handelshogskolan.html">Handelshögskolan</option>
+<option value="Hogsbogatan.html">Högsbogatan</option>
+<option value="Hinsholmen.html">Hinsholmen</option>
+<option value="Hagakyrkan.html">Hagakyrkan</option>
+<option value="Hjallbo.html">Hjällbo</option>
+<option value="HjalmarBrantingsplatsen.html">Hjalmar Brantingsplatsen</option>
+<option value="Jaegerdorffsplatsen.html">Jaegerdorffsplatsen</option>
+<option value="Januarigatan.html">Januarigatan</option>
+<option value="Jarntorget.html">Järntorget</option>
+<option value="Kaptensgatan.html">Kaptensgatan</option>
+<option value="Kaggeledstorget.html">Kaggeledstorget</option>
+<option value="KlintensVag.html">Klintens Väg</option>
+<option value="Kungssten.html">Kungssten</option>
+<option value="KortedalaTorg.html">Kortedala Torg</option>
+<option value="Kapellplatsen.html">Kapellplatsen</option>
+<option value="KrokslattsFabriker.html">Krokslätts Fabriker</option>
+<option value="KrokslattsTorg.html">Krokslätts Torg</option>
+<option value="Komettorget.html">Komettorget</option>
+<option value="Kungsportsplatsen.html">Kungsportsplatsen</option>
+<option value="Korsvagen.html">Korsvägen</option>
+<option value="Kviberg.html">Kviberg</option>
+<option value="Karingberget.html">Käringberget</option>
+<option value="Lana.html">Lana</option>
+<option value="Lackareback.html">Lackarebäck</option>
+<option value="Lantmilsgatan.html">Lantmilsgatan</option>
+<option value="LillaBommen.html">Lilla Bommen</option>
+<option value="LillaTorget.html">Lilla Torget</option>
+<option value="LisebergStation.html">Liseberg Station</option>
+<option value="LisebergSodra.html">Liseberg Södra</option>
+<option value="Linneplatsen.html">Linnéplatsen</option>
+<option value="Langedrag.html">Långedrag</option>
+<option value="Majvallen.html">Majvallen</option>
+<option value="MolndalInnerstad.html">Mölndal Innerstad</option>
+<option value="Medicinaregatan.html">Medicinaregatan</option>
+<option value="Marklandsgatan.html">Marklandsgatan</option>
+<option value="Mildvadersgatan.html">Mildvädersgatan</option>
+<option value="Mariaplan.html">Mariaplan</option>
+<option value="MolndalsSjukhus.html">Mölndals Sjukhus</option>
+<option value="Masthuggstorget.html">Masthuggstorget</option>
+<option value="Munkebackstorget.html">Munkebäckstorget</option>
+<option value="Musikvagen.html">Musikvägen</option>
+<option value="Munkebackstriangeln.html">Munkebäckstriangeln</option>
+<option value="Nordstan.html">Nordstan</option>
+<option value="NyaVarvsallen.html">Nya Varvsallén</option>
+<option value="Nymilsgatan.html">Nymilsgatan</option>
+<option value="Nymanegatan.html">Nymånegatan</option>
+<option value="Snabbsparet-Akareplatsen.html">Snabbspåret-Åkareplatsen</option>
+<option value="SahlgrenskaHuvudentre.html">Sahlgrenska Huvudentré</option>
+<option value="SahlgrenskaNorra.html">Sahlgrenska Norra</option>
+    </select>
+
+    <!-- Editable area -->
+    <div id="editor" class="editor-container" contenteditable="true">
+        <!-- Loaded content will appear here -->
+    </div>
+
+    <!-- Save button -->
+    <button onclick="saveContent()">Save Content</button>
+
+    <script>
+        function loadFile() {
+            const fileName = document.getElementById("fileSelect").value;
+
+            // Fetch the selected file content
+            fetch(fileName)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.text();
+                })
+                .then(data => {
+                    // Set the fetched content into the editor area
+                    document.getElementById('editor').innerHTML = data;
+                })
+                .catch(err => {
+                    console.error('Error loading file:', err);
+                });
+        }
+
+        function saveContent() {
+            const content = document.getElementById('editor').innerHTML;
+
+            // Send the content to the server (save-content.php)
+            const formData = new FormData();
+            formData.append('content', content);
+            formData.append('file', document.getElementById("fileSelect").value);
+
+            fetch('save-content.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.text())
+            .then(data => {
+                alert('Content saved successfully!');
+            })
+            .catch(err => {
+                console.error('Error saving content:', err);
+            });
+        }
+    </script>
+
+</body>
+</html>
